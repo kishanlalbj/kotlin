@@ -43,9 +43,22 @@ object SpringBuild : BuildType({
 
     steps {
         maven {
-            goals = "clean test"
+            goals = "clean compile"
             pomLocation = "demo/pom.xml"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
+            mavenVersion = bundled_3_5()
+        }
+
+        maven {
+            goals = "test"
+            pomLocation = "demo/pom.xml"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+            mavenVersion = bundled_3_5()
+        }
+
+        maven {
+            goals = "clean package"
+            pomLocation = "demo/pom.xml"
             mavenVersion = bundled_3_5()
         }
     }
